@@ -17,13 +17,15 @@ namespace ConsoleWinLogon
             PsGetSid(true);
             PsLoggedon(true);
             Subst("D:", "C:\\Users\\heinr");
-            SDelete("c:\\Users\\heinr\\AppData\\Local\\Temp", "*.", 2, true);
-            SDelete("c:\\Users\\heinr\\AppData\\Local\\Temp", "*.*", 1, true);
-            SDelete("c:\\Windows\\Temp", "*.", 1, true);
-            SDelete("c:\\Windows\\Temp", "*.*", 2, true);
+            SDelete("c:\\Users\\heinr\\AppData\\Local\\Temp", "*", 1, true, true);
+            SDelete("c:\\Users\\heinr\\AppData\\Local\\Temp", "*.", 2, true, true);
+            SDelete("c:\\Users\\heinr\\AppData\\Local\\Temp", "*.*", 3, true, true);
+            SDelete("c:\\Windows\\Temp", "*.", 1, true, true);
+            SDelete("c:\\Windows\\Temp", "*.*", 2, true, true);
             PsPing(false);
             ProcessExplorer(true);
-
+            Console.WriteLine("Press any key to proceed!");
+            Console.ReadKey();
         }
 
         static bool Subst(string targetSubstitutionDrive, string sourceDirectory, bool adminPrivilegePermission = false)
@@ -206,8 +208,7 @@ namespace ConsoleWinLogon
 
 
         static bool ProcessExplorer(bool adminPrivilegePermission = false)
-        {
-            Console.ReadKey();
+        {            
             Console.WriteLine("Run Procexp64.exe");
             // Run "Procexp.exe" or "Procexp64.exe" when adminPrivilegePermission = true
             try
